@@ -1,0 +1,35 @@
+header {
+  display: flex;
+}
+
+header > section {
+  border: 1px solid;
+  font-size: 30px;
+  width: 250px;
+  text-align: center;
+  margin-right: 30px;
+}
+
+header > section:hover {
+  cursor: pointer;
+}
+
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-beer {
+  border: 1px solid;
+  width: 200px;
+  margin: 50px 50px 0 0;
+}
+
+.card-beer > img {
+  width: 150px;
+}
+
+.card-beer:hover {
+  cursor: pointer;
+}
