@@ -1,3 +1,4 @@
+let sharedInfo = ''
 
 function cardPatternGenerator(name, tagline, image) {
   const newSection = creator('section')
@@ -25,6 +26,7 @@ function oneBeerPatternGenerator({
     <q>${tips}</q>
     <q>${description}</q>
     <q>${pairing}</q>
+    <div id="map"></div>
   `
   return inject(newSection, sectionContent)
 }
@@ -36,6 +38,14 @@ function oneBeer(beerId) {
     .then(([beer]) => {
       const target = selector('#content')
       target.append(oneBeerPatternGenerator(beer))
+      const rndPlc = getRndPlace()
+      sharedInfo = `${beer.first_brewed} on ${rndPlc}`
+      return fetch(`${MAPBOX_PLACES_API}${rndPlc}${REST_PLACES_URL}`, FETCH_HEADERS)
+    })
+    .then(rawParser)
+    .then(placesContent => {
+      const coordinates = getCoordinates(placesContent)
+      setMap(coordinates)
     })
     .catch(errorManager)
 }
@@ -71,6 +81,15 @@ function randomBeer() {
     .then(([beer]) => {
       const target = selector('#content')
       target.append(oneBeerPatternGenerator(beer))
+
+      const rndPlc = getRndPlace()
+      sharedInfo = `${beer.first_brewed} on ${rndPlc}`
+      return fetch(`${MAPBOX_PLACES_API}${rndPlc}${REST_PLACES_URL}`, FETCH_HEADERS)
+    })
+    .then(rawParser)
+    .then(placesContent => {
+      const coordinates = getCoordinates(placesContent)
+      setMap(coordinates)
     })
     .catch(errorManager)
 }

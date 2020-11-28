@@ -33,3 +33,8 @@ header > section:hover {
 .card-beer:hover {
   cursor: pointer;
 }
+
+#map {
+  height: 300px;
+  width: 300px;
+}
